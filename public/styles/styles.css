@@ -27,6 +27,10 @@ body {
     z-index: 0;
 }
 
+.teal {
+    color: #8bf7bf;
+}
+
 
 /* FONTS */
 
@@ -34,7 +38,8 @@ h1,
 h2,
 h3,
 p,
-label {
+label,
+button {
     font-family: 'Press Start 2P', cursive;
 }
 
