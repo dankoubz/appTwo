@@ -1,0 +1,53 @@
+<div class="row d-flex align-items-center ">
+	<section id="loginAccount" class="col-12 border collapse">
+
+		{{!-- Log In --}}
+		<div style="height: 30vh;" class="row border">
+			<div class="col-5 d-flex align-items-center text-center">
+				<form action="/api/login" method="POST" class="mx-auto col-12 col-md-8">
+					<h3 class="teal">Login</h3>
+					{{!-- Username --}}
+					<div class="form-group">
+						<label for="formGroupExampleInput">Username</label>
+						<input name="username" type="text" class="form-control" id="loginUsername"
+							placeholder="Example input">
+					</div>
+					{{!-- Password --}}
+					<div class="form-group">
+						<label for="formGroupExampleInput2">Password</label>
+						<input name="password" type="password" class="form-control" id="loginPassword"
+							placeholder="Another input">
+					</div>
+					<button class="btn btn-dark" type="submit">Submit</button>
+				</form>
+			</div>
+
+			{{!-- Divide Message --}}
+
+			<div class="col-2 d-flex align-items-center justify-content-center text-center">
+				<h3> Login or <br>Create Account</h3>
+			</div>
+
+
+			<div class="col-5 d-flex align-items-center text-center">
+				<form action="/api/create" method="POST" class="mx-auto col-12 col-md-8">
+					<h3 class="teal">Create</h3>
+					{{!-- Username --}}
+					<div class="form-group">
+						<label for="formGroupExampleInput">Username</label>
+						<input name="username" type="text" class="form-control" id="createUsername"
+							placeholder="Example input">
+					</div>
+					{{!-- Password --}}
+					<div class="form-group">
+						<label for="formGroupExampleInput2">Password</label>
+						<input name="password" type="text" class="form-control" id="createPassword"
+							placeholder="Another input">
+					</div>
+					<button class="btn btn-dark" type="submit">Submit</button>
+				</form>
+			</div>
+		</div>
+
+	</section>
+</div>

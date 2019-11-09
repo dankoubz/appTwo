@@ -1,3 +1,49 @@
-.list-group-item {
-  line-height: 2.5;
+body {
+    background: #1a1a1a;
+    color: white;
+}
+
+
+/* COLOURS */
+
+#colourBG {
+    background: linear-gradient(#2a2a2a, transparent), linear-gradient(to top left, #1a1a1a, transparent), linear-gradient(to top right, #0d0d0d, transparent);
+    background-blend-mode: screen;
+    height: 100%;
+    width: 100%;
+    opacity: 0.8;
+    position: absolute;
+    z-index: 0;
+}
+
+#gridBG {
+    background-image: url('../src/assets/patternBG03.png');
+    background-repeat: repeat;
+    background-blend-mode: overlay;
+    height: 100%;
+    width: 100%;
+    opacity: 0.25;
+    position: relative;
+    z-index: 0;
+}
+
+.teal {
+    color: #8bf7bf;
+}
+
+
+/* FONTS */
+
+h1,
+h2,
+h3,
+p,
+label,
+button {
+    font-family: 'Press Start 2P', cursive;
+}
+
+h3,
+label {
+    font-size: 1em;
 }
