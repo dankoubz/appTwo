@@ -103,14 +103,8 @@ aside.left {
     height: 115px;
 }
 
-img.keys {
+img.arrows {
     width: 60px;
-    position: absolute;
-    z-index: 3;
-}
-
-img.enter {
-    height: 60px;
     position: absolute;
     z-index: 3;
 }
@@ -158,6 +152,18 @@ img.enter {
 
 /* CONTROLS LEFT SCREEN */
 
+img.keys {
+    width: 60px;
+    position: absolute;
+    z-index: 5;
+}
+
+img.enter {
+    height: 60px;
+    position: absolute;
+    z-index: 5;
+}
+
 #contain-l {
     position: relative;
     width: 200px;
@@ -170,22 +176,22 @@ img.enter {
     bottom: 0;
 }
 
-.k-1 {
+.k-1a {
     right: 40px;
     bottom: 45px;
 }
 
-.k-2 {
+.k-2a {
     right: 110px;
     bottom: 45px;
 }
 
-.p-1 {
+.k-1b {
     right: 40px;
     bottom: 45px;
 }
 
-.p-2 {
+.k-2b {
     right: 110px;
     bottom: 45px;
 }
@@ -196,12 +202,12 @@ img.enter {
     bottom: 110px;
 }
 
-.k-3 {
+.k-3a {
     right: 38px;
     bottom: 155px;
 }
 
-.p-3 {
+.k-3b {
     right: 38px;
     bottom: 155px;
 }
@@ -212,12 +218,12 @@ img.enter {
     bottom: 225px;
 }
 
-.k-4 {
+.k-4a {
     right: 73px;
     bottom: 275px;
 }
 
-.p-4 {
+.k-4b {
     right: 73px;
     bottom: 275px;
 }

@@ -20,11 +20,19 @@ $(document).keydown(function(e) {
     }
     // "X"
     if (e.which == 88) {
-        $(".p-1").removeClass("d-none");
+        $(".k-1b").removeClass("d-none");
+    }
+    // "C"
+    if (e.which == 67) {
+        $(".k-2b").removeClass("d-none");
     }
     // Enter
     if (e.which == 13) {
-        $(".p-3").removeClass("d-none");
+        $(".k-3b").removeClass("d-none");
+    }
+    // "R"
+    if (e.which == 82) {
+        $(".k-4b").removeClass("d-none");
     }
 });
 
@@ -47,11 +55,19 @@ $(document).keyup(function(e) {
     }
 
     if (e.which == 88) {
-        $(".p-1").addClass("d-none");
+        $(".k-1b").addClass("d-none");
+    }
+
+    if (e.which == 67) {
+        $(".k-2b").addClass("d-none");
     }
 
     if (e.which == 13) {
-        $(".p-3").addClass("d-none");
+        $(".k-3b").addClass("d-none");
+    }
+
+    if (e.which == 82) {
+        $(".k-4b").addClass("d-none");
     }
 });
 
