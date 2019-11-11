@@ -1,9 +1,16 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+$(function() {
+        if (getCookie("debugger") == "true") {
+          $('.account-button').hide();
+          $('.logout-button').show();
+          var user = getCookie("username");
+          $('.show-user').html("<p>Hi, " + user + "</p>");
+        } 
+      else {
+          $('.account-button').show();
+          $('.logout-button').hide();
+        }
 
+<<<<<<< HEAD
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -54,47 +61,88 @@ var refreshExamples = function() {
 
             return $li;
         });
+=======
+        $(".create-submit").on("click", function(event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+        var userData = {
+          username: $('.create-form').find('input[name="username"]').val(),
+          password: $('.create-form').find('input[name="password"]').val()
+        };
+        // Send the POST request.
+        $.ajax("/api/create", {
+          type: "POST",
+          data: userData
+        }).then(
+          function() {
+            var row = $("<div>");
+            row.addClass("create-message");
+            row.append("<p>Account created Successfully!</p>");
+            $('.create-form').find('input[name="username"]').val("");
+            $('.create-form').find('input[name="password"]').val("");
+            $(".create-form").html(row);
+          }
+        );
+      });
+>>>>>>> 1b05311314b86e0828d310f36e63a4c1967f0b6a
 
-        $exampleList.empty();
-        $exampleList.append($examples);
-    });
-};
+      $(".login-submit").on("click", function(event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+        var userData = {
+          username: $('.login-form').find('input[name="username"]').val(),
+          password: $('.login-form').find('input[name="password"]').val()
+        };
+        // Send the POST request.
+        $.ajax("/api/login", {
+          type: "POST",
+          data: userData
+        }).then(
+          function(result) {
+            $('.create-form').find('input[name="username"]').val("");
+            $('.create-form').find('input[name="password"]').val("");
+            var row = $("<div>");
+            row.addClass("create-message");
+            if (result) {
+              setCookie("debugger", true, 1);
+              setCookie("username", userData.username, 1);
+              location.reload();
+            } else {
+              row.append("<p>Check your credentials</p>");
+            }
+            $(".show-message").html(row);
+          }
+        );
+      });
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-    event.preventDefault();
+      $(".logout-button").on("click", function(event) {
+        setCookie("debugger", false, 1);
+        location.reload();
+      })
+  });
 
-    var example = {
-        text: $exampleText.val().trim(),
-        description: $exampleDescription.val().trim()
-    };
+// fucntion to set cookie
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
 
-    if (!(example.text && example.description)) {
-        alert("You must enter an example text and description!");
-        return;
+  // function to get cookie
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
     }
-
-    API.saveExample(example).then(function() {
-        refreshExamples();
-    });
-
-    $exampleText.val("");
-    $exampleDescription.val("");
-};
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-    var idToDelete = $(this)
-        .parent()
-        .attr("data-id");
-
-    API.deleteExample(idToDelete).then(function() {
-        refreshExamples();
-    });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+    return "";
+  }
+  
