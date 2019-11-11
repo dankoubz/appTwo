@@ -1,10 +1,21 @@
 <div style="height: 80vh;" class="row d-flex align-items-center">
+
+	{{!-- Main Display --}}
 	<main class="w-100 d-flex justify-content-center">
 		{{!-- GAME SCRENN --}}
 		<canvas id="game-canvas" width="640" height="640" class="border rounded"></canvas>
+	</main>
 
+	<main class="w-100 position-absolute d-flex justify-content-center">
+
+		{{!-- Right Keyboard Controls --}}
 		<div id="keys-r">
 			{{> keysRight}}
+		</div>
+
+		{{!-- Left Keyboard Controls --}}
+		<div id="keys-l">
+			{{> keysLeft}}
 		</div>
 	</main>
 

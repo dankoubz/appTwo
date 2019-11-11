@@ -76,24 +76,41 @@ label {
     position: relative;
 }
 
+#keys-l {
+    position: relative;
+}
+
 aside.right {
     position: absolute;
-    bottom: 0;
-    left: 50px;
+    top: 95px;
+    left: 325px;
     z-index: 5;
 }
 
+aside.left {
+    position: absolute;
+    bottom: -250px;
+    right: 255px;
+    z-index: 6;
+}
 
-/* CONTROLS */
 
-#contain {
+/* CONTROLS RIGHT SCREEN */
+
+#contain-r {
     position: relative;
     width: 200px;
     height: 115px;
 }
 
-img.arrow {
+img.keys {
     width: 60px;
+    position: absolute;
+    z-index: 3;
+}
+
+img.enter {
+    height: 60px;
     position: absolute;
     z-index: 3;
 }
@@ -136,4 +153,71 @@ img.arrow {
 .b4 {
     left: 130px;
     bottom: 0;
+}
+
+
+/* CONTROLS LEFT SCREEN */
+
+#contain-l {
+    position: relative;
+    width: 200px;
+    height: 415px;
+}
+
+.t-1 {
+    position: absolute;
+    right: 60px;
+    bottom: 0;
+}
+
+.k-1 {
+    right: 40px;
+    bottom: 45px;
+}
+
+.k-2 {
+    right: 110px;
+    bottom: 45px;
+}
+
+.p-1 {
+    right: 40px;
+    bottom: 45px;
+}
+
+.p-2 {
+    right: 110px;
+    bottom: 45px;
+}
+
+.t-2 {
+    position: absolute;
+    right: 60px;
+    bottom: 110px;
+}
+
+.k-3 {
+    right: 38px;
+    bottom: 155px;
+}
+
+.p-3 {
+    right: 38px;
+    bottom: 155px;
+}
+
+.t-3 {
+    position: absolute;
+    right: 45px;
+    bottom: 225px;
+}
+
+.k-4 {
+    right: 73px;
+    bottom: 275px;
+}
+
+.p-4 {
+    right: 73px;
+    bottom: 275px;
 }

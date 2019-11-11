@@ -1,22 +1,30 @@
-// KEY STROKE FUNCTIONALITY 
+// KEY STROKE FUNCTIONALITY
+
 // key down show the key press
 $(document).keydown(function(e) {
+    // Up
     if (e.which == 37) {
         $(".b2").removeClass("d-none");
     }
-
+    // Down
     if (e.which == 38) {
         $(".b1").removeClass("d-none");
     }
-
+    // Left
     if (e.which == 39) {
         $(".b4").removeClass("d-none");
-        return false;
     }
-
+    // Right
     if (e.which == 40) {
         $(".b3").removeClass("d-none");
-        return false;
+    }
+    // "X"
+    if (e.which == 88) {
+        $(".p-1").removeClass("d-none");
+    }
+    // Enter
+    if (e.which == 13) {
+        $(".p-3").removeClass("d-none");
     }
 });
 
@@ -36,7 +44,14 @@ $(document).keyup(function(e) {
 
     if (e.which == 40) {
         $(".b3").addClass("d-none");
-        return false;
+    }
+
+    if (e.which == 88) {
+        $(".p-1").addClass("d-none");
+    }
+
+    if (e.which == 13) {
+        $(".p-3").addClass("d-none");
     }
 });
 
