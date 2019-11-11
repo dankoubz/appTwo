@@ -1,34 +1,35 @@
 body {
     background: #1a1a1a;
-    color: white;
+    color: white !important;
+    font-family: 'Press Start 2P', cursive;
 }
 
 
 /* COLOURS */
 
-#colourBG {
-    background: linear-gradient(#2a2a2a, transparent), linear-gradient(to top left, #1a1a1a, transparent), linear-gradient(to top right, #0d0d0d, transparent);
-    background-blend-mode: screen;
-    height: 100%;
-    width: 100%;
-    opacity: 0.8;
-    position: absolute;
-    z-index: 0;
-}
-
-#gridBG {
-    background-image: url('../src/assets/patternBG03.png');
+#loginAccount {
+    background-image: url('../src/staticBG.gif');
     background-repeat: repeat;
     background-blend-mode: overlay;
-    height: 100%;
-    width: 100%;
-    opacity: 0.25;
-    position: relative;
-    z-index: 0;
+}
+
+#leaderboard {
+    background-image: url('../src/staticBG.gif');
+    background-repeat: repeat;
+    background-blend-mode: overlay;
 }
 
 .teal {
     color: #8bf7bf;
+}
+
+.border {
+    border: 1px solid #1e1e1e !important;
+}
+
+td,
+th {
+    border: 3px solid #1e1e1e !important;
 }
 
 
@@ -39,11 +40,100 @@ h2,
 h3,
 p,
 label,
-button {
-    font-family: 'Press Start 2P', cursive;
+button,
+td,
+tr,
+th,
+canvas {
+    font-family: 'Press Start 2P', cursive !important;
 }
 
 h3,
 label {
     font-size: 1em;
+}
+
+
+/* SECTIONS */
+
+#nav {
+    position: relative;
+    z-index: 3;
+}
+
+#game-canvas {
+    width: 500px;
+    height: 500px;
+    box-shadow: -10px 10px 8px rgb(20, 20, 20);
+    transition: 1s ease;
+}
+
+#game-canvas:hover {
+    transform: scale(1.1);
+}
+
+#keys-r {
+    position: relative;
+}
+
+aside.right {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    z-index: 5;
+}
+
+
+/* CONTROLS */
+
+#contain {
+    position: relative;
+    width: 200px;
+    height: 115px;
+}
+
+img.arrow {
+    width: 60px;
+    position: absolute;
+    z-index: 3;
+}
+
+.a1 {
+    top: 0;
+    left: 65px;
+}
+
+.a2 {
+    left: 0;
+    bottom: 0;
+}
+
+.a3 {
+    left: 65px;
+    bottom: 0;
+}
+
+.a4 {
+    left: 130px;
+    bottom: 0;
+}
+
+.b1 {
+    top: 0;
+    left: 65px;
+}
+
+.b2 {
+    left: 0;
+    bottom: 0;
+}
+
+.b3 {
+    left: 65px;
+    bottom: 0;
+}
+
+.b4 {
+    left: 130px;
+    bottom: 0;
 }
