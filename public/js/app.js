@@ -652,9 +652,10 @@ function drawIntoCanvas(width, height, drawFunc) {
     return canvas;
 }
 
-function fillText(text, x, y, color, fontSize) {
+function fillText(text, x, y, color, fontSize, fontFamily) {
     if (typeof color !== 'undefined') ctx.fillStyle = color;
-    if (typeof fontSize !== 'undefined') ctx.font = fontSize + 'px Play';
+    if (typeof fontSize !== 'undefined') ctx.font = fontSize + 'px \'Press Start 2P\'';
+    // if (typeof fontFamily !== 'undefined') ctx.font = "Press Start 2P";
     ctx.fillText(text, x, y);
 }
 
@@ -672,9 +673,9 @@ function fillBlinkingText(text, x, y, blinkFreq, color, fontSize) {
 }
 
 function drawBottomHud() {
-    ctx.fillStyle = '#02ff12';
-    ctx.fillRect(0, CANVAS_HEIGHT - 30, CANVAS_WIDTH, 2);
-    fillText(player.lives + ' x ', 10, CANVAS_HEIGHT - 7.5, 'white', 20);
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fillRect(0, CANVAS_HEIGHT - 40, CANVAS_WIDTH, 10);
+    fillText(player.lives + ' x ', 10, CANVAS_HEIGHT - 7.5, '#1a1a1a', 20);
     ctx.drawImage(spriteSheetImg, player.clipRect.x, player.clipRect.y, player.clipRect.w,
         player.clipRect.h, 45, CANVAS_HEIGHT - 23, player.clipRect.w * 0.5,
         player.clipRect.h * 0.5);
@@ -698,8 +699,9 @@ function drawGame(resized) {
 }
 
 function drawStartScreen() {
-    fillCenteredText("Debugger", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2.75, '#1a1a1a', 36);
-    fillBlinkingText("Press enter to play!", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, 500, '#1a1a1a', 36);
+    fillCenteredText("Debugger", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2.75, '#1a1a1a', 30);
+    fillBlinkingText("Press enter", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 1.5, 500, '#1a1a1a', 30);
+    fillCenteredText("2 play!", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 1.2, 1000, '#1a1a1a', 30);
 }
 
 function animate() {
@@ -715,8 +717,7 @@ function animate() {
         updateGame(dt / 1000);
     }
 
-
-    ctx.fillStyle = '#8bf7bf';
+    ctx.fillStyle = '#089F49';
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     if (hasGameStarted) {
         drawGame(false);
@@ -761,6 +762,12 @@ function onKeyUp(e) {
     e.preventDefault();
     keyStates[e.keyCode] = false;
 }
+
+$(document).keydown(function(e) {
+    if (e.which == 82) {
+        reset();
+    }
+});
 
 
 // ###################################################################
