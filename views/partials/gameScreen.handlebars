@@ -6,7 +6,13 @@
 		<canvas id="game-canvas" width="640" height="640" class="border rounded"></canvas>
 	</main>
 
+	{{!-- Controls + Game Information --}}
 	<main class="w-100 position-absolute d-flex justify-content-center">
+
+		{{!-- User Name --}}
+		<header>
+			<h3>Hey, <span class="teal">User!</span></h3>
+		</header>
 
 		{{!-- Right Keyboard Controls --}}
 		<div id="keys-r">
@@ -17,6 +23,10 @@
 		<div id="keys-l">
 			{{> keysLeft}}
 		</div>
-	</main>
 
+		{{!-- User Score --}}
+		<div id="score">
+			<h3><span>Score: </span> <span class="teal">0000</span></h3>
+		</div>
+	</main>
 </div>
