@@ -156,9 +156,7 @@ $(function() {
         }).then(
             function(res) {
                 $('.leader-table').html("");
-                var content; <<
-                <<
-                << < HEAD
+                var content;
                 for (i = 0; i < res.length; i++) {
                     content += '<tr><td>' + res[i].username + '</td><td>' +
                         res[i].total_score + '</td></tr>';
@@ -170,9 +168,7 @@ $(function() {
                     content += '<tr><td>' + res[i].username + '</td><td>' +
                         res[i].total_score + '</td></tr>';
                 }
-                $('.leader-table').append(content); >>>
-                >>>
-                > 77 db743257c22d66940b5c7d20377d7e033d68ef
+                $('.leader-table').append(content);
             }
         );
     });
