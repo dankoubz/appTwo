@@ -74,7 +74,6 @@ $(document).keyup(function(e) {
 // LOGIN + ACCOUNT CREATION
 
 $(function() {
-
     var game = $("<canvas id='game-canvas'></canvas>");
     game.addClass("border rounded");
 
@@ -84,13 +83,18 @@ $(function() {
         $(".game-main").html(game);
         var user = getCookie("username");
         $('.game-user').html(user);
+
         $('#loading').addClass("d-none");
+
+
     } else {
         $('.account-button').show();
         $('.logout-button').hide();
         $(".game-main").html('');
         $('.user-header').hide();
+
         document.getElementById('navbarCollapse').click();
+
     }
 
     $(".create-submit").on("click", function(event) {
@@ -157,11 +161,11 @@ $(function() {
             function(res) {
                 $('.leader-table').html("");
                 var content;
-                for (i = 0; i < res.length; i++) {
-                    content += '<tr><td>' + res[i].username + '</td><td>' +
+                    for(i=0; i<res.length; i++){
+                        content += '<tr><td>' + res[i].username + '</td><td>' + 
                         res[i].total_score + '</td></tr>';
-                }
-                $('.leader-table').append(content);
+                    }
+                    $('.leader-table').append(content);
             }
         );
     });
