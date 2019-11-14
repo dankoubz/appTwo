@@ -607,6 +607,7 @@ function resolveBulletEnemyCollisions() {
                 alien.alive = bullet.alive = false;
                 particleManager.createExplosion(alien.position.x, alien.position.y, 'white', 120, 5, 5, 3, .15, 150);
                 player.score += 25;
+                $('.score-update').text(player.score)
             }
         }
     }
