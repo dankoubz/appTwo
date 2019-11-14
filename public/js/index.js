@@ -74,14 +74,19 @@ $(document).keyup(function(e) {
 // LOGIN + ACCOUNT CREATION
 
 $(function() {
+    var game = $("<canvas id='game-canvas'></canvas>");
+    game.addClass("border rounded");
+    
     if (getCookie("debugger") == "true") {
         $('.account-button').hide();
         $('.logout-button').show();
+        $(".game-main").html(game);
         var user = getCookie("username");
-        $('.show-user').html("<p>Hi, " + user + "</p>");
+        $('.game-content').before("<h2>Hi, " + user + "</h2>");
     } else {
         $('.account-button').show();
         $('.logout-button').hide();
+        $(".game-main").html('');
     }
 
     $(".create-submit").on("click", function(event) {
@@ -140,6 +145,16 @@ $(function() {
         setCookie("debugger", false, 1);
         location.reload();
     })
+
+    $(".leader").on("click", function(result){
+        $.ajax("/api/leaderboard", {
+            type: "GET",
+        }).then(
+            function(res) {
+                console.log(res);
+            }
+        );
+    });
 });
 
 // fucntion to set cookie
