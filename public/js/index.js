@@ -74,6 +74,7 @@ $(document).keyup(function(e) {
 // LOGIN + ACCOUNT CREATION
 
 $(function() {
+    document.getElementById('navbarCollapse').click();
     var game = $("<canvas id='game-canvas'></canvas>");
     game.addClass("border rounded");
     
@@ -82,11 +83,12 @@ $(function() {
         $('.logout-button').show();
         $(".game-main").html(game);
         var user = getCookie("username");
-        $('.game-content').before("<h2>Hi, " + user + "</h2>");
+        $('.game-user').html(user);
     } else {
         $('.account-button').show();
         $('.logout-button').hide();
         $(".game-main").html('');
+        $('.user-header').hide();
     }
 
     $(".create-submit").on("click", function(event) {
@@ -151,7 +153,13 @@ $(function() {
             type: "GET",
         }).then(
             function(res) {
-                console.log(res);
+                $('.leader-table').html("");
+                var content;
+                    for(i=0; i<res.length; i++){
+                        content += '<tr><td>' + res[i].username + '</td><td>' + 
+                        res[i].total_score + '</td></tr>';
+                    }
+                    $('.leader-table').append(content);
             }
         );
     });
