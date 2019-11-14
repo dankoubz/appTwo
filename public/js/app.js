@@ -617,6 +617,14 @@ function resolveBulletPlayerCollisions() {
         var alien = aliens[i];
         if (alien.bullet !== null && checkRectCollision(alien.bullet.bounds, player.bounds)) {
             if (player.lives === 0) {
+                console.log(player.score);
+                $.ajax("/api/addscore", {
+                    method: "POST",
+                    data: {
+                        username: getCookie("username"),
+                        total_score: player.score
+                    }
+                });
                 hasGameStarted = false;
             } else {
                 alien.bullet.alive = false;

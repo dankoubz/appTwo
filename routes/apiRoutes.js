@@ -52,4 +52,39 @@ module.exports = function(app) {
     })
 
   });
+
+  app.post("/api/addscore", async function(req, res) {
+    console.log(db.users)
+    db.users.findOne({ where: { username: req.body.username } })
+    .then(function (user) {
+      // Check if record exists in db
+      if (user) {
+        user.update({
+          total_score: req.body.total_score
+        })
+        .then(function (result) {
+          res.json(result)
+        })
+      }
+    })
+  });
+
+  app.get("/api/leaderboard", function(req, res) {
+    // findAll returns all entries for a table when used with no options
+    db.users.findAll(
+      {limit:10, order: [['total_score', 'DESC']]}).then(function(result) {
+      // We have access to the todos as an argument inside of the callback function
+      return res.json(result);
+      
+    });
+
+  });
+
+  
+
+
+
 };
+
+
+
