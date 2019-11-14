@@ -74,21 +74,27 @@ $(document).keyup(function(e) {
 // LOGIN + ACCOUNT CREATION
 
 $(function() {
-    document.getElementById('navbarCollapse').click();
     var game = $("<canvas id='game-canvas'></canvas>");
     game.addClass("border rounded");
-    
+
     if (getCookie("debugger") == "true") {
         $('.account-button').hide();
         $('.logout-button').show();
         $(".game-main").html(game);
         var user = getCookie("username");
         $('.game-user').html(user);
+
+        $('#loading').addClass("d-none");
+
+
     } else {
         $('.account-button').show();
         $('.logout-button').hide();
         $(".game-main").html('');
         $('.user-header').hide();
+
+        document.getElementById('navbarCollapse').click();
+
     }
 
     $(".create-submit").on("click", function(event) {
@@ -148,7 +154,7 @@ $(function() {
         location.reload();
     })
 
-    $(".leader").on("click", function(result){
+    $(".leader").on("click", function(result) {
         $.ajax("/api/leaderboard", {
             type: "GET",
         }).then(

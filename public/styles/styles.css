@@ -104,6 +104,11 @@ div#score {
     top: 300px;
 }
 
+table {
+    background: rgb(31, 224, 140, 0.2);
+    backdrop-filter: blur(2.5) !important;
+}
+
 
 /* CONTROLS RIGHT SCREEN */
 
