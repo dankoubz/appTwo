@@ -20,7 +20,7 @@ body {
 }
 
 .teal {
-    color: #089F49;
+    color: #1fe08d;
 }
 
 .border {
@@ -92,6 +92,16 @@ aside.left {
     bottom: -250px;
     right: 255px;
     z-index: 6;
+}
+
+header {
+    position: absolute;
+    bottom: 285px;
+}
+
+div#score {
+    position: absolute;
+    top: 300px;
 }
 
 

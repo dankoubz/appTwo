@@ -83,7 +83,7 @@
 var IS_CHROME = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 var CANVAS_WIDTH = 640;
 var CANVAS_HEIGHT = 640;
-var SPRITE_SHEET_SRC = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAEACAYAAAADRnAGAAACGUlEQVR42u3aSQ7CMBAEQIsn8P+/hiviAAK8zFIt5QbELiTHmfEYE3L9mZE9AAAAqAVwBQ8AAAD6THY5CgAAAKbfbPX3AQAAYBEEAADAuZrC6UUyfMEEAIBiAN8OePXnAQAAsLcmmKFPAQAAgHMbm+gbr3Sdo/LtcAAAANR6GywPAgBAM4D2JXAAABoBzBjA7AmlOx8AAEAzAOcDAADovTc4vQim6wUCABAYQG8QAADd4dPd2fRVYQAAANQG0B4HAABAawDnAwAA6AXgfAAAALpA2uMAAABwPgAAgPoAM9Ci/R4AAAD2dmqcEQIAIC/AiQGuAAYAAECcRS/a/cJXkUf2AAAAoBaA3iAAALrD+gIAAADY9baX/nwAAADNADwFAADo9YK0e5FMX/UFACA5QPSNEAAAAHKtCekmDAAAAADvBljtfgAAAGgMMGOrunvCy2uCAAAACFU6BwAAwF6AGQPa/XsAAADYB+B8AAAAtU+ItD4OAwAAAFVhAACaA0T7B44/BQAAANALwGMQAAAAADYO8If2+P31AgAAQN0SWbhFDwCAZlXgaO1xAAAA1FngnA8AACAeQPSNEAAAAM4CnC64AAAA4GzN4N9NSfgKEAAAAACszO26X8/X6BYAAAD0Anid8KcLAAAAAAAAAJBnwNEvAAAA9Jns1ygAAAAAAAAAAAAAAAAAAABAQ4COCENERERERERERBrnAa1sJuUVr3rsAAAAAElFTkSuQmCC';
+var SPRITE_SHEET_SRC = '/src/SpriteTest.png';
 var LEFT_KEY = 37;
 var RIGHT_KEY = 39;
 var SHOOT_KEY = 88;
@@ -240,7 +240,7 @@ var SheetSprite = BaseSprite.extend({
 var Player = SheetSprite.extend({
     init: function() {
         this._super(spriteSheetImg, PLAYER_CLIP_RECT, CANVAS_WIDTH / 2, CANVAS_HEIGHT - 70);
-        this.scale.set(0.85, 0.85);
+        this.scale.set(1.5, 1.5);
         this.lives = 3;
         this.xVel = 0;
         this.bullets = [];
@@ -267,7 +267,7 @@ var Player = SheetSprite.extend({
         } else this.xVel = 0;
 
         if (wasKeyPressed(SHOOT_KEY)) {
-            if (this.bulletDelayAccumulator > 0.5) {
+            if (this.bulletDelayAccumulator > 0.3) {
                 this.shoot();
                 this.bulletDelayAccumulator = 0;
             }
@@ -336,7 +336,7 @@ var Enemy = SheetSprite.extend({
     init: function(clipRects, x, y) {
         this._super(spriteSheetImg, clipRects[0], x, y);
         this.clipRects = clipRects;
-        this.scale.set(0.5, 0.5);
+        this.scale.set(.85, .85);
         this.alive = true;
         this.onFirstState = true;
         this.stepDelay = 1; // try 2 secs to start with...
@@ -351,7 +351,7 @@ var Enemy = SheetSprite.extend({
     },
 
     shoot: function() {
-        this.bullet = new Bullet(this.position.x, this.position.y + this.bounds.w / 2, -1, 500);
+        this.bullet = new Bullet(this.position.x, this.position.y + this.bounds.w / 5, -1, 500);
     },
 
     update: function(dt) {
@@ -482,11 +482,11 @@ function initCanvas() {
 
 function preDrawImages() {
     var canvas = drawIntoCanvas(2, 8, function(ctx) {
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = '#1a1a1a';
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     });
     bulletImg = new Image();
-    bulletImg.src = canvas.toDataURL();
+    bulletImg.src = 'src/bullet.png';
 }
 
 function setImageSmoothing(value) {
@@ -605,7 +605,7 @@ function resolveBulletEnemyCollisions() {
             var alien = aliens[j];
             if (checkRectCollision(bullet.bounds, alien.bounds)) {
                 alien.alive = bullet.alive = false;
-                particleManager.createExplosion(alien.position.x, alien.position.y, 'white', 70, 5, 5, 3, .15, 50);
+                particleManager.createExplosion(alien.position.x, alien.position.y, 'white', 120, 5, 5, 3, .15, 150);
                 player.score += 25;
             }
         }
@@ -620,7 +620,7 @@ function resolveBulletPlayerCollisions() {
                 hasGameStarted = false;
             } else {
                 alien.bullet.alive = false;
-                particleManager.createExplosion(player.position.x, player.position.y, 'green', 100, 8, 8, 6, 0.001, 40);
+                particleManager.createExplosion(player.position.x, player.position.y, '#1fe08d', 100, 8, 8, 6, 0.001, 140);
                 player.position.set(CANVAS_WIDTH / 2, CANVAS_HEIGHT - 70);
                 player.lives--;
                 break;
@@ -673,15 +673,15 @@ function fillBlinkingText(text, x, y, blinkFreq, color, fontSize) {
 }
 
 function drawBottomHud() {
-    ctx.fillStyle = '#1a1a1a';
-    ctx.fillRect(0, CANVAS_HEIGHT - 40, CANVAS_WIDTH, 10);
-    fillText(player.lives + ' x ', 10, CANVAS_HEIGHT - 7.5, '#1a1a1a', 20);
+    ctx.fillStyle = '#1fe08d';
+    ctx.fillRect(0, CANVAS_HEIGHT - 45, CANVAS_WIDTH, 10);
+    fillText(player.lives + ' x ', 10, CANVAS_HEIGHT - 7.5, 'white', 20);
     ctx.drawImage(spriteSheetImg, player.clipRect.x, player.clipRect.y, player.clipRect.w,
         player.clipRect.h, 45, CANVAS_HEIGHT - 23, player.clipRect.w * 0.5,
         player.clipRect.h * 0.5);
-    fillText('CREDIT: ', CANVAS_WIDTH - 115, CANVAS_HEIGHT - 7.5);
-    fillCenteredText('SCORE: ' + player.score, CANVAS_WIDTH / 2, 20);
-    fillBlinkingText('00', CANVAS_WIDTH - 25, CANVAS_HEIGHT - 7.5, TEXT_BLINK_FREQ);
+    // fillText('CREDIT: ', CANVAS_WIDTH - 115, CANVAS_HEIGHT - 7.5);
+    // fillCenteredText('SCORE: ' + player.score, CANVAS_WIDTH / 2, 20);
+    // fillBlinkingText('00', CANVAS_WIDTH - 25, CANVAS_HEIGHT - 7.5, TEXT_BLINK_FREQ);
 }
 
 function drawAliens(resized) {
@@ -699,9 +699,9 @@ function drawGame(resized) {
 }
 
 function drawStartScreen() {
-    fillCenteredText("Debugger", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2.75, '#1a1a1a', 30);
-    fillBlinkingText("Press enter", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 1.5, 500, '#1a1a1a', 30);
-    fillCenteredText("2 play!", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 1.2, 1000, '#1a1a1a', 30);
+    fillCenteredText("Debugger", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2.75, 'white', 30);
+    fillBlinkingText("Press enter", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 1.5, 500, 'white', 30);
+    fillCenteredText("2 play!", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 1.2, 1000, 'white', 30);
 }
 
 function animate() {
@@ -717,7 +717,7 @@ function animate() {
         updateGame(dt / 1000);
     }
 
-    ctx.fillStyle = '#089F49';
+    ctx.fillStyle = '#1a1a1a';
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     if (hasGameStarted) {
         drawGame(false);
